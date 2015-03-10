@@ -43,7 +43,7 @@ else
 $(combo_2nd_arch_prefix)TARGET_GCC_VERSION := $(TARGET_GCC_VERSION_EXP)
 endif
 
-ARCHIDROID_CFLAGS := -O3 -fgcse-las -fgcse-sm -fipa-pta -fivopts -fmodulo-sched -fmodulo-sched-allow-regmoves -frename-registers -fsection-anchors -ftracer -ftree-loop-im -ftree-loop-ivcanon -funsafe-loop-optimizations -funswitch-loops -fweb -Wno-error=clobbered -Wno-error=maybe-uninitialized
+ARCHIDROID_CFLAGS := -O3 -fgcse-las -fgcse-sm -fipa-pta -fivopts -fmodulo-sched -fmodulo-sched-allow-regmoves -frename-registers -fsection-anchors -ftracer -ftree-loop-im -ftree-loop-ivcanon -funsafe-loop-optimizations -funswitch-loops -fweb -Wno-error=clobbered -Wno-error=maybe-uninitialized -Wno-unknown-warning-option
 ARCHIDROID_CPPLAGS := $(ARCHIDROID_CFLAGS)
 ARCHIDROID_LDFLAGS := -Wl,-O3 -Wl,--relax -Wl,--sort-common
 
