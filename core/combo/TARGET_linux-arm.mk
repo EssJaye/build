@@ -43,7 +43,7 @@ else
 $(combo_2nd_arch_prefix)TARGET_GCC_VERSION := $(TARGET_GCC_VERSION_EXP)
 endif
 
-ARCHIDROID_CFLAGS := -O3 -Wno-error=array-bounds -Wno-error=clobbered -Wno-error=maybe-uninitialized
+ARCHIDROID_CFLAGS := -O3 -Wno-error=array-bounds -Wno-error=clobbered -Wno-error=maybe-uninitialized -Wno-error=strict-overflow
 ARCHIDROID_CPPLAGS := $(ARCHIDROID_CFLAGS)
 ARCHIDROID_LDFLAGS := -Wl,-O3 -Wl,--relax -Wl,--sort-common
 
