@@ -43,9 +43,9 @@ else
 $(combo_2nd_arch_prefix)TARGET_GCC_VERSION := $(TARGET_GCC_VERSION_EXP)
 endif
 
-ARCHIDROID_CFLAGS := -O3 -fgcse-las -fgcse-sm -fipa-pta -fivopts -fmodulo-sched -fmodulo-sched-allow-regmoves -frename-registers -fsection-anchors -ftracer -ftree-loop-im -ftree-loop-ivcanon -funsafe-loop-optimizations -funswitch-loops -fweb -Wno-error=clobbered -Wno-error=maybe-uninitialized
+ARCHIDROID_CFLAGS := -O3 -Wno-error=clobbered -Wno-error=maybe-uninitialized
 ARCHIDROID_CPPLAGS := $(ARCHIDROID_CFLAGS)
-ARCHIDROID_LDFLAGS := -Wl,-O3 -Wl,--relax -Wl,--sort-common
+ARCHIDROID_LDFLAGS :=
 
 TARGET_ARCH_SPECIFIC_MAKEFILE := $(BUILD_COMBOS)/arch/$(TARGET_$(combo_2nd_arch_prefix)ARCH)/$(TARGET_$(combo_2nd_arch_prefix)ARCH_VARIANT).mk
 ifeq ($(strip $(wildcard $(TARGET_ARCH_SPECIFIC_MAKEFILE))),)
