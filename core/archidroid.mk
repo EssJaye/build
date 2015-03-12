@@ -25,16 +25,16 @@
 ARCHIDROID_GCC_CFLAGS_ARM := -O3
 
 # General optimization level of target THUMB compiled with GCC. Default: -Os
-ARCHIDROID_GCC_CFLAGS_THUMB := -O3
+ARCHIDROID_GCC_CFLAGS_THUMB := -Os
 
 # Additional flags passed to all C targets compiled with GCC
-ARCHIDROID_GCC_CFLAGS := -Wno-error=array-bounds -Wno-error=clobbered -Wno-error=maybe-uninitialized -Wno-error=strict-overflow
+ARCHIDROID_GCC_CFLAGS := -O3 -fsection-anchors -funswitch-loops -Wno-error=array-bounds -Wno-error=clobbered -Wno-error=maybe-uninitialized -Wno-error=strict-overflow
 
 # If your arm-linux-androideabi includes support for graphite optimization flags (CLooG), enable additional flags
-ARCHIDROID_GCC_CFLAGS += -fgraphite-identity -floop-block -floop-nest-optimize -floop-strip-mine
+ARCHIDROID_GCC_CFLAGS += -fgraphite-identity
 
 # Flags passed to all C++ targets compiled with GCC
-ARCHIDROID_GCC_CPPFLAGS := -O3 $(ARCHIDROID_CFLAGS)
+ARCHIDROID_GCC_CPPFLAGS := $(ARCHIDROID_CFLAGS)
 
 # Flags passed to linker (ld) of all C and C++ targets compiled with GCC
 ARCHIDROID_GCC_LDFLAGS := -Wl,-O3 -Wl,--relax -Wl,--sort-common
