@@ -31,9 +31,15 @@ endif
 
 # Clang flags for all host or target rules
 CLANG_CONFIG_EXTRA_ASFLAGS :=
-CLANG_CONFIG_EXTRA_CFLAGS := -O3 -Qunused-arguments -Wno-unknown-warning-option
-CLANG_CONFIG_EXTRA_CPPFLAGS := -O3 -Qunused-arguments -Wno-unknown-warning-option
-CLANG_CONFIG_EXTRA_LDFLAGS := -Wl,-O3 -Wl,--relax -Wl,--sort-common
+CLANG_CONFIG_EXTRA_CFLAGS :=
+CLANG_CONFIG_EXTRA_CPPFLAGS :=
+CLANG_CONFIG_EXTRA_LDFLAGS :=
+
+# ArchiDroid
+include $(BUILD_SYSTEM)/archidroid.mk
+CLANG_CONFIG_EXTRA_CFLAGS += $(ARCHIDROID_CLANG_CFLAGS)
+CLANG_CONFIG_EXTRA_CPPFLAGS += $(ARCHIDROID_CLANG_CPPFLAGS)
+CLANG_CONFIG_EXTRA_LDFLAGS += $(ARCHIDROID_CLANG_LDFLAGS)
 
 CLANG_CONFIG_EXTRA_CFLAGS += \
   -D__compiler_offsetof=__builtin_offsetof

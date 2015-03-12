@@ -43,10 +43,6 @@ else
 $(combo_2nd_arch_prefix)TARGET_GCC_VERSION := $(TARGET_GCC_VERSION_EXP)
 endif
 
-ARCHIDROID_CFLAGS := -O3 -Wno-error=array-bounds -Wno-error=clobbered -Wno-error=maybe-uninitialized -Wno-error=strict-overflow
-ARCHIDROID_CPPLAGS := $(ARCHIDROID_CFLAGS)
-ARCHIDROID_LDFLAGS := -Wl,-O3 -Wl,--relax -Wl,--sort-common
-
 TARGET_ARCH_SPECIFIC_MAKEFILE := $(BUILD_COMBOS)/arch/$(TARGET_$(combo_2nd_arch_prefix)ARCH)/$(TARGET_$(combo_2nd_arch_prefix)ARCH_VARIANT).mk
 ifeq ($(strip $(wildcard $(TARGET_ARCH_SPECIFIC_MAKEFILE))),)
 $(error Unknown ARM architecture version: $(TARGET_$(combo_2nd_arch_prefix)ARCH_VARIANT))
@@ -71,16 +67,23 @@ $(combo_2nd_arch_prefix)TARGET_STRIP := $($(combo_2nd_arch_prefix)TARGET_TOOLS_P
 
 $(combo_2nd_arch_prefix)TARGET_NO_UNDEFINED_LDFLAGS := -Wl,--no-undefined
 
-$(combo_2nd_arch_prefix)TARGET_arm_CFLAGS :=    -O3 \
+# ArchiDroid
+include $(BUILD_SYSTEM)/archidroid.mk
+
+$(combo_2nd_arch_prefix)TARGET_arm_CFLAGS :=    $(ARCHIDROID_GCC_CFLAGS_ARM) \
                         -fomit-frame-pointer \
                         -fstrict-aliasing    \
                         -funswitch-loops
 
 # Modules can choose to compile some source as thumb.
 $(combo_2nd_arch_prefix)TARGET_thumb_CFLAGS :=  -mthumb \
-                        -O3 \
+                        $(ARCHIDROID_GCC_CFLAGS_THUMB) \
                         -fomit-frame-pointer \
                         -fno-strict-aliasing
+
+$(combo_2nd_arch_prefix)TARGET_GLOBAL_CFLAGS += $(ARCHIDROID_GCC_CFLAGS)
+$(combo_2nd_arch_prefix)TARGET_GLOBAL_CPPFLAGS += $(ARCHIDROID_GCC_CPPFLAGS)
+$(combo_2nd_arch_prefix)TARGET_GLOBAL_LDFLAGS += $(ARCHIDROID_GCC_LDFLAGS)
 
 # Set FORCE_ARM_DEBUGGING to "true" in your buildspec.mk
 # or in your environment to force a full arm build, even for
@@ -145,10 +148,6 @@ $(combo_2nd_arch_prefix)TARGET_GLOBAL_LDFLAGS += \
 $(combo_2nd_arch_prefix)TARGET_GLOBAL_CFLAGS += $(BOARD_GLOBAL_CFLAGS)
 $(combo_2nd_arch_prefix)TARGET_GLOBAL_CPPFLAGS += $(BOARD_GLOBAL_CPPFLAGS)
 $(combo_2nd_arch_prefix)TARGET_GLOBAL_LDFLAGS += $(BOARD_GLOBAL_LDFLAGS)
-
-$(combo_2nd_arch_prefix)TARGET_GLOBAL_CFLAGS += $(ARCHIDROID_CFLAGS)
-$(combo_2nd_arch_prefix)TARGET_GLOBAL_CPPFLAGS += $(ARCHIDROID_CPPLAGS)
-$(combo_2nd_arch_prefix)TARGET_GLOBAL_LDFLAGS += $(ARCHIDROID_LDFLAGS)
 
 $(combo_2nd_arch_prefix)TARGET_GLOBAL_CFLAGS += -mthumb-interwork
 
