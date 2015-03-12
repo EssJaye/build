@@ -31,7 +31,8 @@ ARCHIDROID_GCC_CFLAGS_THUMB := -Os
 ARCHIDROID_GCC_CFLAGS := -O3 -fsection-anchors -funswitch-loops -Wno-error=array-bounds -Wno-error=clobbered -Wno-error=maybe-uninitialized -Wno-error=strict-overflow
 
 # If your arm-linux-androideabi includes support for graphite optimization flags (CLooG), enable additional flags
-ARCHIDROID_GCC_CFLAGS += -fgraphite-identity
+# NOTICE: Causes internal compiler error ATM
+#ARCHIDROID_GCC_CFLAGS += -fgraphite-identity
 
 # Flags passed to all C++ targets compiled with GCC
 ARCHIDROID_GCC_CPPFLAGS := $(ARCHIDROID_CFLAGS)
