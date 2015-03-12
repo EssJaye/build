@@ -22,13 +22,13 @@
 # GCC
 
 # General optimization level of target ARM compiled with GCC. Default: -O2
-ARCHIDROID_GCC_CFLAGS_ARM := -O3
+ARCHIDROID_GCC_CFLAGS_ARM := -O2
 
 # General optimization level of target THUMB compiled with GCC. Default: -Os
 ARCHIDROID_GCC_CFLAGS_THUMB := -Os
 
 # Additional flags passed to all C targets compiled with GCC
-ARCHIDROID_GCC_CFLAGS := -O3 -fsection-anchors -funswitch-loops -Wno-error=array-bounds -Wno-error=clobbered -Wno-error=maybe-uninitialized -Wno-error=strict-overflow
+ARCHIDROID_GCC_CFLAGS := -O3 -fgcse-las -fgcse-sm -fipa-pta -fivopts -fmodulo-sched -fmodulo-sched-allow-regmoves -frename-registers -fsection-anchors -ftracer -ftree-loop-im -ftree-loop-ivcanon -funsafe-loop-optimizations -funswitch-loops -fweb -Wno-error=array-bounds -Wno-error=clobbered -Wno-error=maybe-uninitialized -Wno-error=strict-overflow
 
 # If your arm-linux-androideabi includes support for graphite optimization flags (CLooG), enable additional flags
 # NOTICE: Causes internal compiler error ATM
@@ -38,19 +38,19 @@ ARCHIDROID_GCC_CFLAGS := -O3 -fsection-anchors -funswitch-loops -Wno-error=array
 ARCHIDROID_GCC_CPPFLAGS := $(ARCHIDROID_CFLAGS)
 
 # Flags passed to linker (ld) of all C and C++ targets compiled with GCC
-ARCHIDROID_GCC_LDFLAGS := -Wl,-O3 -Wl,--relax -Wl,--sort-common
+ARCHIDROID_GCC_LDFLAGS :=
 
 
 # CLANG
 
 # Flags passed to all C targets compiled with CLANG
-ARCHIDROID_CLANG_CFLAGS := -O3 -Qunused-arguments -Wno-unknown-warning-option
+ARCHIDROID_CLANG_CFLAGS := -Qunused-arguments -Wno-unknown-warning-option
 
 # Flags passed to all C++ targets compiled with CLANG
 ARCHIDROID_CLANG_CPPFLAGS := $(ARCHIDROID_CLANG_CFLAGS)
 
 # Flags passed to linker (ld) of all C and C++ targets compiled with CLANG
-ARCHIDROID_CLANG_LDFLAGS := -Wl,-O3 -Wl,--relax -Wl,--sort-common
+ARCHIDROID_CLANG_LDFLAGS :=
 
 # Flags that are used by GCC, but are unknown to CLANG. If you get "argument unused during compilation" error, add the flag here
 ARCHIDROID_CLANG_UNKNOWN_FLAGS := \
