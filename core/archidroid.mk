@@ -59,7 +59,17 @@ ARCHIDROID_CLANG_UNKNOWN_FLAGS := \
   -fgcse-after-reload \
   -fgcse-las \
   -fgcse-sm \
+  -fgraphite-identity \
   -fipa-pta \
+  -floop-block \
+  -floop-interchange \
+  -floop-nest-optimize \
+  -floop-parallelize-all \
+  -ftree-parallelize-loops=2 \
+  -ftree-parallelize-loops=4 \
+  -ftree-parallelize-loops=8 \
+  -ftree-parallelize-loops=16 \
+  -floop-strip-mine \
   -fmodulo-sched \
   -fmodulo-sched-allow-regmoves \
   -frerun-cse-after-loop \
