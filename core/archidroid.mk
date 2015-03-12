@@ -31,8 +31,7 @@ ARCHIDROID_GCC_CFLAGS_THUMB := -O3
 ARCHIDROID_GCC_CFLAGS := -Wno-error=array-bounds -Wno-error=clobbered -Wno-error=maybe-uninitialized -Wno-error=strict-overflow
 
 # Flags passed to all C++ targets compiled with GCC
-ARCHIDROID_GCC_CPPFLAGS += -O3
-ARCHIDROID_GCC_CPPFLAGS += $(ARCHIDROID_CFLAGS)
+ARCHIDROID_GCC_CPPFLAGS := -O3 $(ARCHIDROID_CFLAGS)
 
 # Flags passed to linker (ld) of all C and C++ targets compiled with GCC
 ARCHIDROID_GCC_LDFLAGS := -Wl,-O3 -Wl,--relax -Wl,--sort-common
@@ -44,10 +43,28 @@ ARCHIDROID_GCC_LDFLAGS := -Wl,-O3 -Wl,--relax -Wl,--sort-common
 ARCHIDROID_CLANG_CFLAGS := -O3 -Qunused-arguments -Wno-unknown-warning-option
 
 # Flags passed to all C++ targets compiled with CLANG
-ARCHIDROID_CLANG_CPPFLAGS := -O3 -Qunused-arguments -Wno-unknown-warning-option
+ARCHIDROID_CLANG_CPPFLAGS := $(ARCHIDROID_CLANG_CFLAGS)
 
 # Flags passed to linker (ld) of all C and C++ targets compiled with CLANG
 ARCHIDROID_CLANG_LDFLAGS := -Wl,-O3 -Wl,--relax -Wl,--sort-common
+
+# Flags that are used by GCC, but are unknown to CLANG. If you get "argument unused during compilation" error, add the flag here
+ARCHIDROID_CLANG_UNKNOWN_FLAGS := \
+  -mvectorize-with-neon-double \
+  -mvectorize-with-neon-quad \
+  -fgcse-after-reload \
+  -fgcse-las \
+  -fgcse-sm \
+  -fipa-pta \
+  -fmodulo-sched \
+  -fmodulo-sched-allow-regmoves \
+  -frerun-cse-after-loop \
+  -frename-registers \
+  -fsection-anchors \
+  -ftree-loop-im \
+  -ftree-loop-ivcanon \
+  -funsafe-loop-optimizations \
+  -fweb
 
 
 # General
@@ -58,6 +75,8 @@ ARCHIDROID_CLANG_LDFLAGS := -Wl,-O3 -Wl,--relax -Wl,--sort-common
 # error "image too large" for recovery.img, use this definition
 #
 # NOTICE: It's better to use device-based flag TARGET_NO_RECOVERY instead, but some devices may have
-# boot + recovery combo (e.g. Sony Xperias), and we must build recovery for them, so we can't use TARGET_NO_RECOVERY
+# boot + recovery combo (e.g. Sony Xperias), and we must build recovery for them, so we can't set TARGET_NO_RECOVERY globally
 # Therefore, this seems like a safe approach (will only ignore check on recovery.img, without doing anything else)
+# However, if you use compiled recovery.img for your device, please disable this flag (comment or set to false), and lower
+# optimization levels instead
 ARCHIDROID_IGNORE_RECOVERY_SIZE := true
