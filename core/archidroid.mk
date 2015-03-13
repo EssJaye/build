@@ -28,10 +28,10 @@ ARCHIDROID_GCC_CFLAGS_ARM := -O2
 ARCHIDROID_GCC_CFLAGS_THUMB := -Os
 
 # Additional flags passed to all C targets compiled with GCC
-ARCHIDROID_GCC_CFLAGS := -O3 -fgcse-las -fgcse-sm -fmodulo-sched -fmodulo-sched-allow-regmoves -fsection-anchors -funsafe-loop-optimizations -funswitch-loops -fweb -Wno-error=array-bounds -Wno-error=clobbered -Wno-error=maybe-uninitialized -Wno-error=strict-overflow
+ARCHIDROID_GCC_CFLAGS := -O3 -fgcse-las -fgcse-sm -fipa-pta -fivopts -frename-registers -fsection-anchors -ftracer -ftree-loop-im -ftree-loop-ivcanon -funsafe-loop-optimizations -funswitch-loops -fweb -Wno-error=array-bounds -Wno-error=clobbered -Wno-error=maybe-uninitialized -Wno-error=strict-overflow
 
 # TO TEST
-# -fipa-pta -fivopts -frename-registers -ftracer -ftree-loop-im -ftree-loop-ivcanon
+# -fmodulo-sched -fmodulo-sched-allow-regmoves
 
 # If your arm-linux-androideabi includes support for graphite optimization flags (CLooG), enable additional flags
 # NOTICE: Causes internal compiler error ATM
