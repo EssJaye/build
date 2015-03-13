@@ -22,20 +22,33 @@
 # GCC
 
 # General optimization level of target ARM compiled with GCC. Default: -O2
-ARCHIDROID_GCC_CFLAGS_ARM := -O2
+ARCHIDROID_GCC_CFLAGS_ARM := -O3
 
 # General optimization level of target THUMB compiled with GCC. Default: -Os
 ARCHIDROID_GCC_CFLAGS_THUMB := -Os
 
 # Additional flags passed to all C targets compiled with GCC
-ARCHIDROID_GCC_CFLAGS := -O3 -fgcse-las -fgcse-sm -fipa-pta -fivopts -fmodulo-sched -frename-registers -fsection-anchors -ftracer -ftree-loop-im -ftree-loop-ivcanon -funsafe-loop-optimizations -funswitch-loops -fweb -Wno-error=array-bounds -Wno-error=clobbered -Wno-error=maybe-uninitialized -Wno-error=strict-overflow
+ARCHIDROID_GCC_CFLAGS := -O3 -fgcse-las -fgcse-sm -fipa-pta -fivopts -frename-registers -fsection-anchors -ftracer -ftree-loop-im -ftree-loop-ivcanon -funsafe-loop-optimizations -funswitch-loops -fweb -Wno-error=array-bounds -Wno-error=clobbered -Wno-error=maybe-uninitialized -Wno-error=strict-overflow
 
-# TO TEST
-# -fmodulo-sched -fmodulo-sched-allow-regmoves
+############################
+### EXPERIMENTAL SECTION ###
+############################
+
+# The following flags were tested, and found to be causing compilation issues / other problems
+
+# ARCHIDROID_GCC_CFLAGS += -fmodulo-sched -fmodulo-sched-allow-regmoves
+# Disabled because of:
+# {standard input}: Assembler messages:
+# {standard input}:571: Error: symbol `.LPIC38' is already defined
+# external/chromium_org/third_party/zlib/crc32.c
 
 # If your arm-linux-androideabi includes support for graphite optimization flags (CLooG), enable additional flags
 # NOTICE: Causes internal compiler error ATM
-#ARCHIDROID_GCC_CFLAGS += -fgraphite-identity
+# ARCHIDROID_GCC_CFLAGS += -fgraphite-identity
+
+############################
+### EXPERIMENTAL SECTION ###
+############################
 
 # Flags passed to all C++ targets compiled with GCC
 ARCHIDROID_GCC_CPPFLAGS := $(ARCHIDROID_GCC_CFLAGS)
