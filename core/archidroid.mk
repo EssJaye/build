@@ -54,7 +54,7 @@ ARCHIDROID_GCC_CFLAGS := -O3 -fgcse-las -fgcse-sm -fipa-pta -fivopts -frename-re
 ARCHIDROID_GCC_CPPFLAGS := $(ARCHIDROID_GCC_CFLAGS)
 
 # Flags passed to linker (ld) of all C and C++ targets compiled with GCC
-ARCHIDROID_GCC_LDFLAGS :=
+ARCHIDROID_GCC_LDFLAGS := -Wl,-O3 -Wl,--sort-common
 
 
 # CLANG
@@ -66,7 +66,7 @@ ARCHIDROID_CLANG_CFLAGS := -O3 -Qunused-arguments -Wno-unknown-warning-option
 ARCHIDROID_CLANG_CPPFLAGS := $(ARCHIDROID_CLANG_CFLAGS)
 
 # Flags passed to linker (ld) of all C and C++ targets compiled with CLANG
-ARCHIDROID_CLANG_LDFLAGS :=
+ARCHIDROID_CLANG_LDFLAGS := -Wl,-O3 -Wl,--sort-common
 
 # Flags that are used by GCC, but are unknown to CLANG. If you get "argument unused during compilation" error, add the flag here
 ARCHIDROID_CLANG_UNKNOWN_FLAGS := \
