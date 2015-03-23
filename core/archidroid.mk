@@ -44,7 +44,7 @@ ARCHIDROID_GCC_CFLAGS := -O3 -fgcse-las -fgcse-sm -fipa-pta -fivopts -frename-re
 
 # If your arm-linux-androideabi includes support for graphite optimization flags (CLooG), enable additional flags
 # NOTICE: Causes internal compiler error ATM
-# ARCHIDROID_GCC_CFLAGS += -fgraphite-identity
+ARCHIDROID_GCC_CFLAGS += -fgraphite
 
 ############################
 ### EXPERIMENTAL SECTION ###
@@ -54,7 +54,7 @@ ARCHIDROID_GCC_CFLAGS := -O3 -fgcse-las -fgcse-sm -fipa-pta -fivopts -frename-re
 ARCHIDROID_GCC_CPPFLAGS := $(ARCHIDROID_GCC_CFLAGS)
 
 # Flags passed to linker (ld) of all C and C++ targets compiled with GCC
-ARCHIDROID_GCC_LDFLAGS := -Wl,--sort-common
+ARCHIDROID_GCC_LDFLAGS := -Wl,-O3 -Wl,--as-needed -Wl,--relax -Wl,--sort-common
 
 
 # CLANG
