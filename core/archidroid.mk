@@ -43,8 +43,16 @@ ARCHIDROID_GCC_CFLAGS := -O3 -fgcse-las -fgcse-sm -fipa-pta -fivopts -frename-re
 # external/chromium_org/third_party/zlib/crc32.c
 
 # If your arm-linux-androideabi includes support for graphite optimization flags (CLooG), enable additional flags
-# NOTICE: Causes internal compiler error ATM
-ARCHIDROID_GCC_CFLAGS += -fgraphite
+
+# ARCHIDROID_GCC_CFLAGS += -fgraphite
+# Disabled because of internal compiler error:
+# 0x5ceefc gsi_for_stmt(gimple_statement_d*)
+# 0xa8788e insert_out_of_ssa_copy
+# 0xa87ede rewrite_phi_out_of_ssa
+# 0xa8e233 rewrite_reductions_out_of_ssa
+# 0xa8e233 build_poly_scop(scop*)
+# 0xa79686 graphite_transform_loops()
+# 0x7dca56 graphite_transforms
 
 ############################
 ### EXPERIMENTAL SECTION ###
