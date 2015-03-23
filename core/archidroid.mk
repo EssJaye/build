@@ -75,6 +75,7 @@ ARCHIDROID_CLANG_UNKNOWN_FLAGS := \
   -fgcse-after-reload \
   -fgcse-las \
   -fgcse-sm \
+  -fgraphite \
   -fgraphite-identity \
   -fipa-pta \
   -floop-block \
